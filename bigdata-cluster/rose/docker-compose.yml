@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  rose-master:
+    build: ./rose-master
+    image: phsong/rose-master:0.0.1
+    container_name: rose-master
+#    volumes:
+#      - rose-mysql:/var/lib/mysql
+    ports:
+      - "8020:8020"
+      - "50070:50070"
+      - "50470:50470"
+      - "8088:8088"
+      - "19888:19888"
+      - "3306:3306"
+      - "9083:9083"
+      - "10000:10000"
+      - "16010:16010"
+      - "2181:2181"
+      - "8080:8080"
+      - "4040:4040"
+      - "4000:4000"
+      - "18080:18080"
+      - "28080:28080"
+      - "8048:8048"
+  rose-master2:
+    build: ./rose-master2
+    image: phsong/rose-master2:0.0.1
+    container_name: rose-master2
+    ports:
+      - "50090:50090"
+  rose-client:
+    build: ./rose-client
+    image: phsong/rose-client:0.0.1
+    container_name: rose-client
+    ports:
+      - "50075:50075"
+      - "8042:8042"
+      - "16030:16030"
+      - "8081:8081"
+volumes:
+  rose-mysql:
