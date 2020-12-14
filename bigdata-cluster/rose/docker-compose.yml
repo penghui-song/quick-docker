@@ -40,5 +40,35 @@ services:
       - "8042:8042"
       - "16030:16030"
       - "8081:8081"
+  rose-redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - rose-redis:/data
+  rose-rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  rose-sqlserver:
+    image: microsoft/mssql-server-linux:2017-latest
+    ports:
+      - "1433:1433"
+    volumes:
+      - rose-redis:/etc/sqlserver
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: 1234Qwer!
+  rose-portainer:
+    image: portainer/portainer-ce
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - rose-portainer:/data
 volumes:
   rose-mysql:
+  rose-redis:
+  rose-portainer:

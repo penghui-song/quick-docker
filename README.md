@@ -6,7 +6,7 @@
 
 #### Rose cluster
 
-`rose`集群分为`rose-master`,`rose-master2`,`rose-client`,各节点运行应用如下：
+`rose`集群分为`rose-master`,`rose-master2`,`rose-client`,`rose-other`,各节点运行应用如下：
 
 - rose-master
   - hadoop namenode
@@ -28,6 +28,11 @@
   - spark worker
   - hbase regionserver
   - kafka node
+- rose-other
+  - redis
+  - rabbitmq
+  - sqlserver
+  - portainer
 
 ##### Component version
 
@@ -43,6 +48,10 @@
 | hbase       | 1.6.0        |
 | kafka       | 2.4.1        |
 | kafka eagle | 2.0.3        |
+| redis       | latest       |
+| rabbitmq    | management   |
+| sqlserver   | 2017-latest  |
+| portainer   | latest       |
 
 ##### Component port
 
@@ -82,6 +91,15 @@
 | HBase     | RegionServer | 16030 | http服务端口 |
 | Spark     | Worker       | 8081  | http服务端口 |
 
+- rose-other
+
+| Component | Node   | Port  | Desc         |
+| --------- | ------ | ----- | ------------ |
+| redis     | Server | 6379  | 服务端口     |
+| rabbitmq  | Server | 15672 | http服务端口 |
+| sqlserver | Server | 1433  | 服务端口     |
+| portainer | Server | 9000  | http服务端口 |
+
 ##### Build image
 
 ```shel
@@ -109,3 +127,25 @@ docker-compose down
 # 例如执行hive,其它同此
 docker exec -it rose-master hive
 ```
+
+##### Questions & Solution
+
+- 镜像构建失败: `Temporary failure resolving 'deb.debian.org'`
+
+  ```shell
+  # 添加dns解析
+  cat /etc/docker/daemon.json
+  {
+  "dns": ["8.8.8.8", "114.114.114.114"]
+  }
+  ```
+
+- 本机或程序访问集群
+
+  ```shell
+  # 配置域名映射：宿主机ip rose-master
+  cat /etc/hosts
+  xxx.xxx.xxx.xxx rose-master
+  ```
+
+  
