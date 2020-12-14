@@ -16,4 +16,5 @@ ADD kafka/* $KAFKA_CONF_DIR/
 #RUN id=$((RANDOM%999999+1)) && sed -i "s/broker.id=0/broker.id=${id}/" $KAFKA_CONF_DIR/server.properties
 
 ADD run.sh /run.sh
+RUN chmod a+x /run.sh
 CMD ["-c","/run.sh"]

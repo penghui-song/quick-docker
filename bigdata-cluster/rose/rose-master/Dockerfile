@@ -36,4 +36,5 @@ ln -s $KE_HOME/conf $KE_CONF_DIR
 COPY kafka-eagle/* $KE_CONF_DIR/
 
 ADD run.sh /run.sh
+RUN chmod a+x /run.sh
 CMD ["-c","/run.sh"]
