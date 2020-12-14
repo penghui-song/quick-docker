@@ -82,8 +82,6 @@
 | HBase     | RegionServer | 16030 | http服务端口 |
 | Spark     | Worker       | 8081  | http服务端口 |
 
-
-
 ##### Build image
 
 ```shel
@@ -103,4 +101,11 @@ docker-compose up -d
 ```shell
 cd bigdata-cluster/rose
 docker-compose down
+```
+
+##### Run command
+
+```shell
+# 例如执行hive,其它同此
+docker exec -it rose-master hive
 ```
