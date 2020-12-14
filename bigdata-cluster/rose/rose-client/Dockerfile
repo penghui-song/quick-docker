@@ -13,7 +13,7 @@ ln -s $KAFKA_HOME/config $KAFKA_CONF_DIR && \
 mkdir -p /var/lib/kafka
 ADD kafka/* $KAFKA_CONF_DIR/
 
-RUN id=$((RANDOM%999999+1)) && sed -i "s/broker.id=0/broker.id=${id}/" $KAFKA_CONF_DIR/server.properties
+#RUN id=$((RANDOM%999999+1)) && sed -i "s/broker.id=0/broker.id=${id}/" $KAFKA_CONF_DIR/server.properties
 
 ADD run.sh /run.sh
 CMD ["-c","/run.sh"]

@@ -64,6 +64,18 @@ ln -s $HBASE_HOME/conf $HBASE_CONF_DIR && \
 mkdir -p /var/lib/hbase
 ADD hbase/* $HBASE_CONF_DIR/
 
+
+#FLINK
+ARG FLINK_VERSION=1.12.0
+ENV FLINK_HOME /usr/local/flink
+ENV FLINK_CONF_DIR /etc/flink
+ENV PATH $PATH:$FLINK_HOME/bin
+ADD flink-"$FLINK_VERSION"-bin-scala_2.11.tgz /usr/local/
+RUN ln -s /usr/local/flink-"$FLINK_VERSION" $FLINK_HOME && \
+ln -s $FLINK_HOME/conf $FLINK_CONF_DIR && \
+mkdir -p /var/lib/flink
+ADD flink/* $FLINK_CONF_DIR/
+
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

@@ -20,7 +20,10 @@ hive --service hiveserver2 &
 "$ZOOKEEPER_HOME"/bin/zkServer.sh start &
 
 /entrypoint.sh -d rose-master:50070,rose-master:2181 -c "$HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start master &"
+
 /entrypoint.sh -d rose-master:2181 -c "$KE_HOME/bin/ke.sh start &"
+
+"$FLINK_HOME"/bin/jobmanager.sh start &
 
 while true
 do
