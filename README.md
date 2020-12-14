@@ -48,6 +48,7 @@
 | hbase       | 1.6.0        |
 | kafka       | 2.4.1        |
 | kafka eagle | 2.0.3        |
+| flink       | 1.12.0       |
 | redis       | latest       |
 | rabbitmq    | management   |
 | sqlserver   | 2017-latest  |

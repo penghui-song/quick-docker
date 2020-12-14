@@ -1,0 +1,5 @@
+---
+
+- hosts: rose_master
+  roles:
+    - docker
