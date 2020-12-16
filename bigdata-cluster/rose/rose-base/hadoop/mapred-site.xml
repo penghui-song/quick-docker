@@ -13,4 +13,8 @@
         <name>mapreduce.jobhistory.webapp.address</name>
         <value>rose-master:19888</value>
     </property>
+    <property>
+        <name>yarn.nodemanager.bind-host</name>
+        <value>0.0.0.0</value>
+    </property>
 </configuration>
